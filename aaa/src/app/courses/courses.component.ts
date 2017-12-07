@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'course',
+  selector: 'app-course',
   template: `
   <h2>compenent: {{ title }} </h2>
 <button class="btn btn-primary">Click me</button>
@@ -11,7 +11,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
-  
   title = '  Course Work!';
 
   constructor() { }
