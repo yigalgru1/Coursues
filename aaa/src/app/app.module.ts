@@ -7,12 +7,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
 import { MapComponent } from './map/map.component';
+import { ActivityListComponent } from './activity-list/activity-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesComponent,
-    MapComponent
+    MapComponent,
+    ActivityListComponent
   ],
   imports: [
     BrowserModule,
