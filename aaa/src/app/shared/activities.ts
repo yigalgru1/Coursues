@@ -22,7 +22,7 @@ export const SAVED_ACTIVITIRS: IActivity[] = [
         distance: 6.2,
         date:new Date('01/11/2017'),    
         comments: "Nice day, cool temps",
-        gpxData: '../../assents/gpx/2017-12-11.21.45.31.gpx'
+        gpxData: '../../assents/gpx/2017-12-11.21.41.13.gpx'
     },
     
 ]

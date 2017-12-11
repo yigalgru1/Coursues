@@ -21,8 +21,8 @@ export class ActivityService {
   }
 
   getFirstDate(allActivities: IActivity[]) {
-    let earlistDate = new Date('1/1/9999');
-    for (let i = 0; i < allActivities.length, i++;) {
+    var earlistDate = new Date("01/01/9999");
+    for (var i = 0; i < allActivities.length; i++) {
       var currentDate = allActivities[i].date;
       if (currentDate < earlistDate) {
         earlistDate = currentDate;
