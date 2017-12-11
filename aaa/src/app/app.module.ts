@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
 import { MapComponent } from './map/map.component';
 import { ActivityListComponent } from './activity-list/activity-list.component';
+import { ActivityService } from 'app/services/activity.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { ActivityListComponent } from './activity-list/activity-list.component';
     FormsModule,
     HttpModule
   ],
-  providers: [CoursesService],
+  providers: [CoursesService,ActivityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
