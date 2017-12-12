@@ -13,7 +13,6 @@ import { ActivityListComponent } from './activity-list/activity-list.component';
 import { ActivityService } from 'app/services/activity.service';
 import { RouterModule } from '@angular/router/src/router_module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
