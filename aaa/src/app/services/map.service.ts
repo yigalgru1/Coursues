@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 import { ActivityService } from '../services/activity.service';
+import { log } from 'util';
 
 
 var apiToken = environment.MAPBOX_API_KEY;
@@ -16,13 +17,13 @@ const defaultZoom: number = 8
 @Injectable()
 export class MapService {
 
-  constructor() { } 
+  constructor() { }
 
-  getActivity(id: number){
+  getActivity(id: number) {
     return SAVED_ACTIVITIES.slice(0).find(run => run.id == id)
   }
 
-  plotActivity(id: number){
+  plotActivity(id: number) {
     var myStyle = {
       "color": "#3949AB",
       "weight": 5,
@@ -33,29 +34,38 @@ export class MapService {
 
     map.maxZoom = 100;
 
-   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGlhdGRhIiwiYSI6ImNqOXpybWxoNzV0Y2Myd212OWFjZ2xrdXMifQ.w-GvqYH3T10qHCKBn_Z-IA', {
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGlhdGRhIiwiYSI6ImNqOXpybWxoNzV0Y2Myd212OWFjZ2xrdXMifQ.w-GvqYH3T10qHCKBn_Z-IA', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18,
       id: 'mapbox.streets',
       accessToken: 'apitoken',
-    }).addTo(map);  
-   
-     /*
-     L.tileLayer('https://api.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox.dark',
-      accessToken: apiToken
     }).addTo(map);
- */
+
+    /*
+    L.tileLayer('https://api.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+     maxZoom: 18,
+     id: 'mapbox.dark',
+     accessToken: apiToken
+   }).addTo(map);
+*/
     var customLayer = L.geoJson(null, {
       style: myStyle
     });
 
     var gpxLayer = omnivore.gpx(SAVED_ACTIVITIES.slice(0).find(run => run.id == id).gpxData, null, customLayer)
-    .on('ready', function() {
-      map.fitBounds(gpxLayer.getBounds());
-    }).addTo(map);
+      .on('ready', function () {
+        map.fitBounds(gpxLayer.getBounds());
+        gpxLayer.eachLayer(function (layer) {
+
+          // See the `.bindPopup` documentation for full details. This
+          // dataset has a property called `name`: your dataset might not,
+          // so inspect it and customize to taste.
+          layer.bindPopup(layer.feature.properties.name);
+
+        });
+
+      }).addTo(map);
   }
 
 }
