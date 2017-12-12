@@ -1,5 +1,5 @@
-import { appRoutes } from './../routes';
-import { Route } from '@angular/compiler/src/core';
+
+import { appRoutes } from '../routes';
 import { CoursesService } from './courses.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,7 +11,8 @@ import { CoursesComponent } from './courses/courses.component';
 import { MapComponent } from './map/map.component';
 import { ActivityListComponent } from './activity-list/activity-list.component';
 import { ActivityService } from 'app/services/activity.service';
-import { RouterModule } from '@angular/router/src/router_module';
+import { MapService } from 'app/services/map.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { RouterModule } from '@angular/router/src/router_module';
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CoursesService, ActivityService],
+  providers: [CoursesService, ActivityService, MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

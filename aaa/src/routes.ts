@@ -1,11 +1,11 @@
-import { Routes } from '@angular/router';
-import { MapComponent } from './app/map/map.component';
 import { ActivityListComponent } from './app/activity-list/activity-list.component';
-import { Route } from '@angular/compiler/src/core';
+import { MapComponent } from './app/map/map.component';
+import { Routes } from "@angular/router"
+
+
 
 export const appRoutes: Routes = [
-    { path: "runs", component: ActivityListComponent },
-    { path: "runs/:id", component: MapComponent },
-    { path: "", redirectTo:"/runs", pathMatch:'full' }
+  { path: "runs", component: ActivityListComponent },
+  { path: "run/:id", component: MapComponent },
+  { path: "", redirectTo: "/runs", pathMatch: 'full' }
 ]
-

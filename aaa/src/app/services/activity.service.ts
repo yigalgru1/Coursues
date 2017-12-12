@@ -1,4 +1,4 @@
-import { SAVED_ACTIVITIRS } from './../shared/activities';
+import { SAVED_ACTIVITIES } from './../shared/activities';
 import { IActivity } from './../shared/activity.mode';
 import { Injectable } from '@angular/core';
 
@@ -8,7 +8,7 @@ export class ActivityService {
 
   constructor() { }
   getActivities(): IActivity[] {
-    return SAVED_ACTIVITIRS.slice(0);
+    return SAVED_ACTIVITIES.slice(0);
   }
   getTotalActivities(allActivities: IActivity[]) {
     return allActivities.length;
@@ -21,9 +21,9 @@ export class ActivityService {
   }
 
   getFirstDate(allActivities: IActivity[]) {
-    var earlistDate = new Date("01/01/9999");
-    for (var i = 0; i < allActivities.length; i++) {
-      var currentDate = allActivities[i].date;
+    let earlistDate = new Date('01/01/9999');
+    for (let i = 0; i < allActivities.length; i++) {
+      let currentDate = allActivities[i].date;
       if (currentDate < earlistDate) {
         earlistDate = currentDate;
       }
