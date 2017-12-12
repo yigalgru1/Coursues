@@ -18,7 +18,7 @@ export const SAVED_ACTIVITIRS: IActivity[] = [
     },
     {
         id: 3,
-        name: "Thrid bike traning",
+        name: 'Thrid bike traning',
         distance: 30.2,
         date: new Date('01/11/2017'),
         comments: "Nice day, hot temps",

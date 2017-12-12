@@ -16,32 +16,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
-  isActive : Boolean = false  ;
+  isActive: Boolean = false;
 
   title = '  Course Work!';
 
-  onDivClick()
-  {
-    console.log("Div was click");
+  onDivClick() {
+    console.log('Div was click');
   }
-  onSave($event)
-  {
-    console.log("Button was click",$event);
+  onSave($event) {
+    console.log('Button was click', $event);
     $event.stopPropagation();
-    
+
   }
 
-  onKeyUp($event)
-  {
-    if ($event.keyCode ==13) {
-      console.log("Enter was press");
-      
+  onKeyUp($event) {
+    if ($event.keyCode === 13) {
+      console.log('Enter was press');
+
     }
   }
 
-  onSpaceUp(mail)
-  {
-    console.log("Space was press",mail);   
+  onSpaceUp(mail) {
+    console.log('Space was press', mail);
   }
 
   constructor() { }
