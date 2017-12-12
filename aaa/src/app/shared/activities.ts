@@ -40,15 +40,15 @@ export const SAVED_ACTIVITIES: IActivity[] = [
    "id": 2,
    "name": 'Industrial Park',
    "date": new Date('06/04/2017'),
-   "gpxData": '../../assets/gpx/2017-12-11.21.44.06.gpx',
-   "distance": 1.2,
+   "gpxData": '../../assets/gpx/2017-12-12.17.06.13.gpx',
+   "distance": 30.2,
    "comments": 'Cool and windy.'
  },
  {
    "id": 3,
    "name": 'Forest Route',
    "date": new Date('06/05/2017'),
-   "gpxData": '../../assets/gpx/2017-12-11.21.41.13.gpx',
+   "gpxData": '../../assets/gpx/2017-12-12.17.19.12.gpx',
    "distance": 3.2,
    "comments": 'Evening run.'
  }
