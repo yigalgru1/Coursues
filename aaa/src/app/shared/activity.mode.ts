@@ -6,5 +6,4 @@ export interface IActivity {
     comments?: string
     distance?: number
     gpxData: string
-
-} 
+}
