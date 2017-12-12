@@ -1,3 +1,4 @@
+// tslint:disable-next-line:one-line
 export interface IActivity {
     id: number
     name: string
@@ -5,4 +6,5 @@ export interface IActivity {
     comments?: string
     distance?: number
     gpxData: string
-}
+
+} 
