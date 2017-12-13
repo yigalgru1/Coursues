@@ -13,13 +13,15 @@ import { ActivityListComponent } from './activity-list/activity-list.component';
 import { ActivityService } from 'app/services/activity.service';
 import { MapService } from 'app/services/map.service';
 import { RouterModule } from '@angular/router';
+import { SummaryPipe } from 'app/summary.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesComponent,
     MapComponent,
-    ActivityListComponent
+    ActivityListComponent,
+    SummaryPipe
   ],
   imports: [
     BrowserModule,
