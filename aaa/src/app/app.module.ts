@@ -1,3 +1,4 @@
+import { FavoriteComponent } from './favorite/favorite.component';
 
 import { appRoutes } from '../routes';
 import { CoursesService } from './courses.service';
@@ -15,13 +16,15 @@ import { MapService } from 'app/services/map.service';
 import { RouterModule } from '@angular/router';
 import { SummaryPipe } from 'app/summary.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     CoursesComponent,
     MapComponent,
     ActivityListComponent,
-    SummaryPipe
+    SummaryPipe,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,

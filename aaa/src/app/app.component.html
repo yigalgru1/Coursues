@@ -1,4 +1,5 @@
-<div class="container">
+<!--
+  <div class="container">
   <nav id="" class="navbar navbar-custom">
     <a class="navbar-brand" href="#">
       <p class="logo">{{title}}</p>
@@ -10,4 +11,10 @@
  </router-outlet>
 
  <app-course></app-course>
+
+
+
 </div>
+
+-->
+<app-favorite [isFavorite]="post.isFavorite" (change)="onFavioteChange($event)" ></app-favorite>
