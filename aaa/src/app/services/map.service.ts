@@ -30,7 +30,7 @@ export class MapService {
     return SAVED_ACTIVITIES.slice(0).find(run => run.id == id)
   }
 
- 
+
 
 
   plotActivity(id?: number) {
@@ -39,11 +39,11 @@ export class MapService {
       "weight": 3,
       "opacity": 0.95
     };
-      var myStyle2 = {
-        "color": "red",
-        "weight": 3,
-        "opacity": 0.95
-      };
+    var myStyle2 = {
+      "color": "red",
+      "weight": 3,
+      "opacity": 0.95
+    };
 
     var map = L.map('map').setView(defaultCoords, defaultZoom);
 
@@ -77,24 +77,20 @@ export class MapService {
       console.log("no data in id :" + id);
 
       for (let i = 0; i < SAVED_ACTIVITIES.length; i++) {
-      let nid =  SAVED_ACTIVITIES[i].id;
+        let nid = SAVED_ACTIVITIES[i].id;
+         var gpxLayer = omnivore.gpx(SAVED_ACTIVITIES.slice(0).find(run => run.id == nid).gpxData, null, customLayer2)
+          .on('ready', function () {
+            map.fitBounds(gpxLayer.getBounds());
+          });
 
-      var gpxLayer = omnivore.gpx(SAVED_ACTIVITIES.slice(0).find(run => run.id == nid).gpxData, null, customLayer2)
-      .on('ready', function () {
-        map.fitBounds(gpxLayer.getBounds());
-        gpxLayer.eachLayer(function (layer) {
-
-          // See the `.bindPopup` documentation for full details. This
-          // dataset has a property called `name`: your dataset might not,
-          // so inspect it and customize to taste.
-          layer.bindPopup(layer.feature.properties.name);
-
-        });
-      }).addTo(map);
+        if (i + 1 == SAVED_ACTIVITIES.length) {
+          console.log(gpxLayer._layers);
+          gpxLayer.addTo(map);
+        }
 
       }
 
-    
+
     }
     else {
       var gpxLayer = omnivore.gpx(SAVED_ACTIVITIES.slice(0).find(run => run.id == id).gpxData, null, customLayer)
@@ -106,7 +102,7 @@ export class MapService {
             // dataset has a property called `name`: your dataset might not,
             // so inspect it and customize to taste.
             layer.bindPopup(layer.feature.properties.name);
-
+            console.log(layer.feature.properties);
           });
         }).addTo(map);
     }
