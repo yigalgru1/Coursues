@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 
 import { ActivityService } from '../services/activity.service';
 import { log } from 'util';
+import { forEach } from '@angular/router/src/utils/collection';
 
 
 var apiToken = environment.MAPBOX_API_KEY;
@@ -19,16 +20,30 @@ export class MapService {
 
   constructor() { }
 
-  getActivity(id: number) {
+  getActivity(id?: number) {
+
+    if (id > SAVED_ACTIVITIES.length) {
+      console.log("id great from activites");
+      return SAVED_ACTIVITIES.slice(0);
+    }
+
     return SAVED_ACTIVITIES.slice(0).find(run => run.id == id)
   }
 
-  plotActivity(id: number) {
+ 
+
+
+  plotActivity(id?: number) {
     var myStyle = {
       "color": "#3949AB",
-      "weight": 5,
+      "weight": 3,
       "opacity": 0.95
     };
+      var myStyle2 = {
+        "color": "red",
+        "weight": 3,
+        "opacity": 0.95
+      };
 
     var map = L.map('map').setView(defaultCoords, defaultZoom);
 
@@ -53,7 +68,18 @@ export class MapService {
       style: myStyle
     });
 
-    var gpxLayer = omnivore.gpx(SAVED_ACTIVITIES.slice(0).find(run => run.id == id).gpxData, null, customLayer)
+    var customLayer2 = L.geoJson(null, {
+      style: myStyle2
+    });
+
+
+    if (id > SAVED_ACTIVITIES.length) {
+      console.log("no data in id :" + id);
+
+      for (let i = 0; i < SAVED_ACTIVITIES.length; i++) {
+      let nid =  SAVED_ACTIVITIES[i].id;
+
+      var gpxLayer = omnivore.gpx(SAVED_ACTIVITIES.slice(0).find(run => run.id == nid).gpxData, null, customLayer2)
       .on('ready', function () {
         map.fitBounds(gpxLayer.getBounds());
         gpxLayer.eachLayer(function (layer) {
@@ -64,8 +90,26 @@ export class MapService {
           layer.bindPopup(layer.feature.properties.name);
 
         });
-
       }).addTo(map);
+
+      }
+
+    
+    }
+    else {
+      var gpxLayer = omnivore.gpx(SAVED_ACTIVITIES.slice(0).find(run => run.id == id).gpxData, null, customLayer)
+        .on('ready', function () {
+          map.fitBounds(gpxLayer.getBounds());
+          gpxLayer.eachLayer(function (layer) {
+
+            // See the `.bindPopup` documentation for full details. This
+            // dataset has a property called `name`: your dataset might not,
+            // so inspect it and customize to taste.
+            layer.bindPopup(layer.feature.properties.name);
+
+          });
+        }).addTo(map);
+    }
   }
 
 }
