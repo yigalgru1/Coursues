@@ -40,10 +40,16 @@ export class AppComponent {
     console.log("change favoirte", eventArgs);
   }
 
+  addCourse() {
+    let number = this.courses.length + 1;
+    this.courses.push({ id: number, name: 'course' + number })
+  }
 
-
-
-}
+  removeCourse(course) {
+    let index = this.courses.indexOf(course);
+    this.courses.splice(index, 1);
+  }}
+  
 
 export interface LikeChangedEventArgs {
 
