@@ -1,0 +1,15 @@
+<span class="glyphicon glyphicon-heart " [class.select]="!isLike" [class.unselect]="isLike" (click)="onclick()">
+</span>
+<span>{{likeCount}}</span>
+
+<div *ngIf="courses.length > 0 ; then coursesList  else noCourses"> List of Courses
+
+</div>
+
+
+<ng-template #coursesList>
+  List of Courses
+</ng-template>
+<ng-template #noCourses>
+  no Courses
+</ng-template>

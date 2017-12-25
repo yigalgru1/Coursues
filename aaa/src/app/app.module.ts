@@ -15,6 +15,8 @@ import { ActivityService } from 'app/services/activity.service';
 import { MapService } from 'app/services/map.service';
 import { RouterModule } from '@angular/router';
 import { SummaryPipe } from 'app/summary.pipe';
+import { LikeComponent } from './like/like.component';
+import { CommonModule } from "@angular/common";
 
 
 @NgModule({
@@ -24,12 +26,14 @@ import { SummaryPipe } from 'app/summary.pipe';
     MapComponent,
     ActivityListComponent,
     SummaryPipe,
-    FavoriteComponent
+    FavoriteComponent,
+    LikeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    CommonModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [CoursesService, ActivityService, MapService],

@@ -1,0 +1,10 @@
+.select{
+    color: #CCC ;
+}
+
+.unselect{
+    color: deeppink ;
+}
+.glyphicon{
+    cursor: pointer;
+}

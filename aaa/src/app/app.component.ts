@@ -14,6 +14,20 @@ export class AppComponent {
     isFavorite: true,
   }
 
+  tweet = {
+    body: "some text",
+    isLike: false,
+    likeCount: 0
+  }
+  onlikeChange(eventArgs: LikeChangedEventArgs) {
+  //  console.log("change tweet", eventArgs);
+
+
+  //  this.tweet.isLike = eventArgs.isLike;
+   // this.tweet.likeCount = eventArgs.likeCount;
+
+  }
+
   onFavioteChange(eventArgs: FavoriteChangedEventArgs) {
     console.log("change favoirte", eventArgs);
   }
@@ -21,6 +35,12 @@ export class AppComponent {
 
 
 
+}
+
+export interface LikeChangedEventArgs {
+
+  isLike: boolean
+ // likeCount: number
 }
 
 export interface FavoriteChangedEventArgs {
