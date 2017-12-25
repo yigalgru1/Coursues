@@ -20,33 +20,25 @@ export class AppComponent {
     isLike: false,
     likeCount: 0
   }
+
+  courses = [
+    { id: 1, name: 'course1' },
+    { id: 2, name: 'course2' },
+    { id: 3, name: 'course3' }
+  ];
+  viewMode = 'sdada';
   onlikeChange(eventArgs: LikeChangedEventArgs) {
-  //  console.log("change tweet", eventArgs);
+    //  console.log("change tweet", eventArgs);
 
 
-  //  this.tweet.isLike = eventArgs.isLike;
-   // this.tweet.likeCount = eventArgs.likeCount;
+    //  this.tweet.isLike = eventArgs.isLike;
+    // this.tweet.likeCount = eventArgs.likeCount;
 
   }
 
   onFavioteChange(eventArgs: FavoriteChangedEventArgs) {
     console.log("change favoirte", eventArgs);
   }
-
-  courses = [
-    { id: 1, name: 'course1' },
-    { id: 2, name: 'course2' },
-    { id: 3, name: 'course3' }
-];
-viewMode = 'sdada';
-post = {
-  title: "Title",
-  isFavorite: true,
-}
-
-onFavioteChange(eventArgs: FavoriteChangedEventArgs) {
-  console.log("change favoirte", eventArgs);
-}
 
 
 
@@ -56,7 +48,7 @@ onFavioteChange(eventArgs: FavoriteChangedEventArgs) {
 export interface LikeChangedEventArgs {
 
   isLike: boolean
- // likeCount: number
+  // likeCount: number
 }
 
 export interface FavoriteChangedEventArgs {
