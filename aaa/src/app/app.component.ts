@@ -9,14 +9,21 @@ import { log } from 'util';
 export class AppComponent {
   title = 'Bike jornal';
 
-  post = {
-    title: "Title",
-    isFavorite: true,
-  }
 
-  onFavioteChange(eventArgs: FavoriteChangedEventArgs) {
-    console.log("change favoirte", eventArgs);
-  }
+  courses = [
+    { id: 1, name: 'course1' },
+    { id: 2, name: 'course2' },
+    { id: 3, name: 'course3' }
+];
+viewMode = 'sdada';
+post = {
+  title: "Title",
+  isFavorite: true,
+}
+
+onFavioteChange(eventArgs: FavoriteChangedEventArgs) {
+  console.log("change favoirte", eventArgs);
+}
 
 
 

@@ -16,5 +16,30 @@
 
 </div>
 
--->
+
 <app-favorite [isFavorite]="post.isFavorite" (change)="onFavioteChange($event)" ></app-favorite>
+
+<div [hidden]="courses.length == 0"> List of Courses</div>
+
+
+<div [hidden]= "courses.length >0" >No Courses</div>-->
+
+<div class="nav nav-pills">
+  <li [class.active]="viewMode=='map'" (click)="viewMode = 'map'">
+    <a >Map View</a>
+  </li>
+  <li [class.active]="viewMode=='list'"  (click)="viewMode = 'list'">
+    <a >List View </a>
+  </li>
+</div>
+<div [ngSwitch] = "viewMode" >
+  <div *ngSwitchCase="'map'" >Map View Content</div>
+  <div *ngSwitchCase="'list'">List View Content</div>
+  <div *ngSwitchDefault >Otherwise</div>
+</div>
+
+<ul>
+  <li *ngFor="let courses of courses; index as i; even as e" > 
+   {{i}} - {{courses.name}} <span *ngIf="e" >(Even)</span>
+  </li>
+</ul>
