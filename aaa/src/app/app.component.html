@@ -9,12 +9,13 @@
  <router-outlet>
    
  </router-outlet>
-
+ </div>
+-->
  <app-course></app-course>
 
 
+ <div class="container"></div>
 
-</div>
 
 <app-favorite [isFavorite]="post.isFavorite" (change)="onFavioteChange($event)">
   <ng-container id="heading">heading</ng-container>
@@ -23,7 +24,7 @@
     <p>Some Content here ...</p>
   </div>
 </app-favorite>
--->
+
 <like [likeCount]="tweet.likeCount" [isLike]="tweet.isLike"></like>
 
 
@@ -55,4 +56,9 @@
   </li>
 </ul>
 <button (click) = "addCourse()">Add</button>
+
+<input type="text" [appInputFormat] ="'lowercase'">    
+<zippy title="Shipping details">
+Shipping details content  
+</zippy> 
 

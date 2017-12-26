@@ -16,7 +16,9 @@ import { MapService } from 'app/services/map.service';
 import { RouterModule } from '@angular/router';
 import { SummaryPipe } from 'app/summary.pipe';
 import { LikeComponent } from './like/like.component';
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
+import { InputFormatDirective } from './input-format.directive';
+import { ZippyComponent } from './zippy/zippy.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { CommonModule } from "@angular/common";
     ActivityListComponent,
     SummaryPipe,
     FavoriteComponent,
-    LikeComponent
+    LikeComponent,
+    InputFormatDirective,
+    ZippyComponent
   ],
   imports: [
     BrowserModule,
