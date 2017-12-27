@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { SummaryPipe } from 'app/summary.pipe';
 import { LikeComponent } from './like/like.component';
 import { CommonModule } from "@angular/common";
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CommonModule } from "@angular/common";
     ActivityListComponent,
     SummaryPipe,
     FavoriteComponent,
-    LikeComponent
+    LikeComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
