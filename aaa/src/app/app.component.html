@@ -33,7 +33,7 @@
 <div [hidden]="courses.length == 0"> List of Courses</div>
 
 
-<div [hidden]= "courses.length >0" >No Courses</div>-->
+<div [hidden]= "courses.length >0" >No Courses</div>
 
 <div class="nav nav-pills">
   <li [class.active]="viewMode=='map'" (click)="viewMode = 'map'">
@@ -56,9 +56,9 @@
   </li>
 </ul>
 <button (click) = "addCourse()">Add</button>
-
 <input type="text" [appInputFormat] ="'lowercase'">    
 <zippy title="Shipping details">
 Shipping details content  
 </zippy> 
-
+-->
+<contact-form></contact-form>
