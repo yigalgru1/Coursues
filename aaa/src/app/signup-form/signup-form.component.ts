@@ -1,6 +1,7 @@
+
 import { PasswordValidator } from './password.validator';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -9,18 +10,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./signup-form.component.css']
 })
 export class SignupFormComponent {
+  form: FormGroup;
 
-  form = new FormGroup({
-    oldPassword: new FormControl('',
-      Validators.required,
-      PasswordValidator.oldPasswordValidator),
-    newPassword: new FormControl('',
-      Validators.required,
-      PasswordValidator.newPasswordValidator),
-    confirmPassword: new FormControl('',
-      Validators.required,
-      PasswordValidator.newPasswordValidator),
-  });
+
+
+  constructor(fb: FormBuilder) {
+    this.form = fb.group({
+      oldPassword: ['', Validators.required, PasswordValidator.oldPasswordValidator],
+      newPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    }, { validator: PasswordValidator.passwordShouldMatch });
+  }
 
   get oldPassword() {
     return this.form.get('oldPassword');

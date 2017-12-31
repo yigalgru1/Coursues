@@ -30,4 +30,15 @@ export class PasswordValidator {
             }, 2000);
         });
     }
+
+    static passwordShouldMatch(control: AbstractControl) {
+        let newpass = control.get('newPassword');
+        let confpass = control.get('confirmPassword');
+
+        if (newpass.value !== confpass.value) {
+            return { passwordShouldMatch: true };
+        }
+        return null;
+    }
+
 }

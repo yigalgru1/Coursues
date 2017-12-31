@@ -15,7 +15,6 @@
     <div *ngIf="newPassword.pending">checking....</div>
     <div *ngIf="newPassword.touched && newPassword.invalid" class="alert alert-danger">
         <div *ngIf="newPassword.errors.required"> New Password is required. </div>
-        <div *ngIf="newPassword.errors.newPasswordValidator"> New Password are ivalid. </div>
     </div>
     <div class="form-group">
         <label for="confirmPassword">Confirm Password</label>
@@ -24,7 +23,8 @@
     <div *ngIf="confirmPassword.pending">checking....</div>
     <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="alert alert-danger">
         <div *ngIf="confirmPassword.errors.required"> Confirm Password is required. </div>
-        <div *ngIf="confirmPassword.errors.newPasswordValidator"> Confirm Password are ivalid. </div>
     </div>
+    <div *ngIf="confirmPassword.valid && form.invalid && form.errors.passwordShouldMatch" class="alert alert-danger"> Password are not match. </div>
+
     <button class="btn btn-primary" type="submit" [disabled]="form.invalid || form.pending"> Sign Up</button>
 </form>
