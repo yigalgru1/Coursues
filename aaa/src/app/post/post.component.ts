@@ -33,15 +33,26 @@ export class PostComponent implements OnInit {
 
   }
 
-  //update new in backend 
-  //using patch update only spesipic properits
-  //using put update whole elememt
+  // update new in backend
+  // using patch update only spesipic properits
+  // using put update whole elememt
   updatePost(post) {
     this.http.patch(this.url + '/' + post.id, JSON.stringify({ isRead: true }))
       .subscribe(res => {
         console.log(res.json());
       });
   }
+
+
+  deletePost(post) {
+    this.http.delete(this.url + '/' + post.id)
+      .subscribe(res => {
+        console.log(res.json());
+        let index = this.posts.indexOf(post);
+        this.posts.splice(index, 1);
+      });
+  }
+
 
   ngOnInit() {
   }
