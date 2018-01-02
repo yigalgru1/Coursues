@@ -19,7 +19,7 @@ export class PostComponent implements OnInit {
         this.posts = response.json()
       });
   }
-
+  //add new item to backend
   createPost(input: HTMLInputElement) {
     let post = { title: input.value };
     input.value = '';
@@ -31,6 +31,16 @@ export class PostComponent implements OnInit {
         this.posts.splice(0, 0, post);
       });
 
+  }
+
+  //update new in backend 
+  //using patch update only spesipic properits
+  //using put update whole elememt
+  updatePost(post) {
+    this.http.patch(this.url + '/' + post.id, JSON.stringify({ isRead: true }))
+      .subscribe(res => {
+        console.log(res.json());
+      });
   }
 
   ngOnInit() {
