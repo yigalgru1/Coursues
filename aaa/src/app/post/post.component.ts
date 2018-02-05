@@ -1,7 +1,7 @@
+import { PostService } from './../services/post.service';
 import { log } from 'util';
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-import { posix } from 'path';
+import { Response } from '@angular/http/src/static_response';
 
 @Component({
   selector: 'post',
@@ -11,20 +11,23 @@ import { posix } from 'path';
 export class PostComponent implements OnInit {
 
   posts: any[];
-  private url = 'https://jsonplaceholder.typicode.com/posts';
-  constructor(private http: Http) {
-  
+
+  constructor(private service: PostService) {
   }
   //add new item to backend
   createPost(input: HTMLInputElement) {
     let post = { title: input.value };
     input.value = '';
-    this.http.post(this.url, JSON.stringify(post))
+    this.service.createPost(post)
       .subscribe(res => {
         console.log(res.json());
         post['id'] = res.json().id;
         console.log(post);
         this.posts.splice(0, 0, post);
+      },
+      error => {
+        alert('an Unexepted error occured.')
+        console.log(error);
       });
 
   }
@@ -33,29 +36,49 @@ export class PostComponent implements OnInit {
   // using patch update only spesipic properits
   // using put update whole elememt
   updatePost(post) {
-    this.http.patch(this.url + '/' + post.id, JSON.stringify({ isRead: true }))
+    this.service.updatePost(post.id)
       .subscribe(res => {
         console.log(res.json());
+      },
+      (error: Response) => {
+        if (error.status === 404)
+          alert('This post has already been deleted.')
+        else {
+          alert('An Unexepted error occured.')
+          console.log(error);
+        }
       });
   }
 
 
   deletePost(post) {
-    this.http.delete(this.url + '/' + post.id)
+    this.service.deletePost(post.id)
       .subscribe(res => {
         console.log(res.json());
         let index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
+      },
+      (error: Response) => {
+        if (error.status === 404)
+          alert('This post has already been deleted.')
+        else {
+          alert('An Unexepted error occured.')
+          console.log(error);
+        }
       });
   }
 
 
   ngOnInit() {
-    this.http.get(this.url).
-    subscribe(response => {
-      console.log(response.json());
-      this.posts = response.json()
-    });
+    this.service.getPost().
+      subscribe(response => {
+        console.log(response.json());
+        this.posts = response.json()
+      },
+      error => {
+        alert('an Unexepted error occured.')
+        console.log(error);
+      });
   }
 
 }
