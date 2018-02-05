@@ -1,3 +1,4 @@
+import { PostService } from './services/post.service';
 import { FavoriteComponent } from './favorite/favorite.component';
 
 import { appRoutes } from '../routes';
@@ -49,7 +50,11 @@ import { PostComponent } from './post/post.component';
     CommonModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [CoursesService, ActivityService, MapService],
+  providers: [
+    CoursesService,
+    ActivityService,
+    MapService,
+    PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
