@@ -2,7 +2,6 @@ import { NoFoundError } from './../common/no-found-error';
 import { PostService } from './../services/post.service';
 import { log } from 'util';
 import { Component, OnInit } from '@angular/core';
-import { Response } from '@angular/http/src/static_response';
 import { AppError } from 'app/common/app-error';
 import { BadInput } from 'app/common/bad-input';
 
@@ -20,20 +19,24 @@ export class PostComponent implements OnInit {
   //add new item to backend
   createPost(input: HTMLInputElement) {
     let post = { title: input.value };
+    this.posts.splice(0, 0, post);
+
     input.value = '';
-    this.service.createPost(post)
+
+    this.service.create(post)
       .subscribe(res => {
-        console.log(res.json());
-        post['id'] = res.json().id;
+        console.log(res);
+        post['id'] = res.id;
         console.log(post);
-        this.posts.splice(0, 0, post);
       },
       (error: AppError) => {
+        this.posts.slice(0, 1);
+        
         if (error instanceof NoFoundError)
           alert('This post has already been deleted.')
-          else {
-            throw error;
-          }
+        else {
+          throw error;
+        }
       });
 
   }
@@ -42,9 +45,9 @@ export class PostComponent implements OnInit {
   // using patch update only spesipic properits
   // using put update whole elememt
   updatePost(post) {
-    this.service.updatePost(post.id)
+    this.service.update(post.id)
       .subscribe(res => {
-        console.log(res.json());
+        console.log(res);
       },
       (error: AppError) => {
         if (error instanceof BadInput)
@@ -57,9 +60,9 @@ export class PostComponent implements OnInit {
 
 
   deletePost(post) {
-    this.service.deletePost(345)
+    this.service.delete(345)
       .subscribe(res => {
-        console.log(res.json());
+        console.log(res);
         let index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
       },
@@ -74,10 +77,10 @@ export class PostComponent implements OnInit {
 
 
   ngOnInit() {
-    this.service.getPost().
-      subscribe(response => {
-        console.log(response.json());
-        this.posts = response.json()
+    this.service.getAll().
+      subscribe(posts => {
+        console.log(posts);
+        this.posts = posts;
       });
   }
 

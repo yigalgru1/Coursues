@@ -10,27 +10,33 @@ import { AppError } from 'app/common/app-error';
 @Injectable()
 export class DataService {
 
-  private url;
-
-  constructor(private http: Http) { }
+  constructor(private url: string, private http: Http) { }
 
   getAll() {
-    return this.http.get(this.url);
+    return this.http.get(this.url)
+      .map(respose => respose.json())
+      .catch(this.handleError);
   }
 
   delete(id: number) {
-    return this.http.delete(this.url + '/' + id).catch(this.handleError);
+    return this.http.delete(this.url + '/' + id)
+    .map(respose => respose.json())
+    .catch(this.handleError);
   }
 
   // update new in backend
   // using patch update only spesipic properits
   // using put update whole elememt
   update(id: number) {
-    return this.http.patch(this.url + '/' + id, JSON.stringify({ isRead: true })).catch(this.handleError);
+    return this.http.patch(this.url + '/' + id, JSON.stringify({ isRead: true }))
+          .map(respose => respose.json())
+          .catch(this.handleError);
   }
 
   create(resource) {
-    return this.http.post(this.url, JSON.stringify(resource)).catch(this.handleError);
+    return this.http.post(this.url, JSON.stringify(resource))
+    .map(respose => respose.json()).
+    catch(this.handleError);
   }
 
   private handleError(error: Response) {
@@ -38,7 +44,7 @@ export class DataService {
       return Observable.throw(new BadInput(error.json()));
     else if (error.status === 404)
       return Observable.throw(new NoFoundError());
-      return Observable.throw(new AppError(error.json()));
+    return Observable.throw(new AppError(error.json()));
   }
 
 }
