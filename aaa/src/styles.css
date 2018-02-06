@@ -31,3 +31,9 @@ body {
 .pink {
     color: chocolate;
 }
+
+
+.myImage {
+    height: 30px;
+    width: 30px;
+}

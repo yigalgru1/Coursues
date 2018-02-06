@@ -1,3 +1,4 @@
+import { FollowerService } from './services/follower.service';
 import { AppErrorHandler } from './common/app-error-handler';
 import { AppError } from './common/app-error';
 import { ErrorHandler } from '@angular/core';
@@ -27,6 +28,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { CourseFormComponent } from './course-form/course-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { PostComponent } from './post/post.component';
+import { FollowerComponent } from './follower/follower.component';
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { PostComponent } from './post/post.component';
     CourseFormComponent,
     SignupFormComponent,
     PostComponent,
+    FollowerComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { PostComponent } from './post/post.component';
     ActivityService,
     MapService,
     PostService,
+    FollowerService,
     { provide: ErrorHandler, useClass: AppErrorHandler }],
   bootstrap: [AppComponent]
 })
