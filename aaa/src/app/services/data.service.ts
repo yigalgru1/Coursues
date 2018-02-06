@@ -19,6 +19,7 @@ export class DataService {
   }
 
   delete(id: number) {
+ // return  Observable.throw(new AppError());
     return this.http.delete(this.url + '/' + id)
     .map(respose => respose.json())
     .catch(this.handleError);

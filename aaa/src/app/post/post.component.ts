@@ -31,7 +31,7 @@ export class PostComponent implements OnInit {
       },
       (error: AppError) => {
         this.posts.slice(0, 1);
-        
+
         if (error instanceof NoFoundError)
           alert('This post has already been deleted.')
         else {
@@ -60,13 +60,16 @@ export class PostComponent implements OnInit {
 
 
   deletePost(post) {
-    this.service.delete(345)
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index, 1);
+
+    this.service.delete(post.id)
       .subscribe(res => {
         console.log(res);
-        let index = this.posts.indexOf(post);
-        this.posts.splice(index, 1);
       },
       (error: AppError) => {
+        this.posts.splice(index, 0, post);
+
         if (error instanceof NoFoundError)
           alert('This post has already been deleted.')
         else {
