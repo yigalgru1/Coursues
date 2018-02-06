@@ -8,29 +8,29 @@ import { AppError } from 'app/common/app-error';
 
 
 @Injectable()
-export class PostService {
+export class DataService {
 
-  private url = 'https://jsonplaceholder.typicode.com/posts';
+  private url;
 
   constructor(private http: Http) { }
 
-  getPost() {
+  getAll() {
     return this.http.get(this.url);
   }
 
-  deletePost(id: number) {
+  delete(id: number) {
     return this.http.delete(this.url + '/' + id).catch(this.handleError);
   }
 
   // update new in backend
   // using patch update only spesipic properits
   // using put update whole elememt
-  updatePost(id: number) {
+  update(id: number) {
     return this.http.patch(this.url + '/' + id, JSON.stringify({ isRead: true })).catch(this.handleError);
   }
 
-  createPost(post) {
-    return this.http.post(this.url, JSON.stringify(post)).catch(this.handleError);
+  create(resource) {
+    return this.http.post(this.url, JSON.stringify(resource)).catch(this.handleError);
   }
 
   private handleError(error: Response) {

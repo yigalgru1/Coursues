@@ -1,7 +1,10 @@
+import { NoFoundError } from './../common/no-found-error';
 import { PostService } from './../services/post.service';
 import { log } from 'util';
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http/src/static_response';
+import { AppError } from 'app/common/app-error';
+import { BadInput } from 'app/common/bad-input';
 
 @Component({
   selector: 'post',
@@ -25,9 +28,12 @@ export class PostComponent implements OnInit {
         console.log(post);
         this.posts.splice(0, 0, post);
       },
-      error => {
-        alert('an Unexepted error occured.')
-        console.log(error);
+      (error: AppError) => {
+        if (error instanceof NoFoundError)
+          alert('This post has already been deleted.')
+          else {
+            throw error;
+          }
       });
 
   }
@@ -40,30 +46,28 @@ export class PostComponent implements OnInit {
       .subscribe(res => {
         console.log(res.json());
       },
-      (error: Response) => {
-        if (error.status === 404)
+      (error: AppError) => {
+        if (error instanceof BadInput)
           alert('This post has already been deleted.')
         else {
-          alert('An Unexepted error occured.')
-          console.log(error);
+          throw error;
         }
       });
   }
 
 
   deletePost(post) {
-    this.service.deletePost(post.id)
+    this.service.deletePost(345)
       .subscribe(res => {
         console.log(res.json());
         let index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
       },
-      (error: Response) => {
-        if (error.status === 404)
+      (error: AppError) => {
+        if (error instanceof NoFoundError)
           alert('This post has already been deleted.')
         else {
-          alert('An Unexepted error occured.')
-          console.log(error);
+          throw error;
         }
       });
   }
@@ -74,10 +78,6 @@ export class PostComponent implements OnInit {
       subscribe(response => {
         console.log(response.json());
         this.posts = response.json()
-      },
-      error => {
-        alert('an Unexepted error occured.')
-        console.log(error);
       });
   }
 
