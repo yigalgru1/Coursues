@@ -6,9 +6,22 @@
 <ul class="list-group">
   <li *ngFor="let follower of followers" 
       class="list-group-item">
-      <img src="{{follower.avatar_url}}" 
-      class="rounded img-fluid img-thumbnail myImage" alt="">
-    {{follower.login}}
-    {{follower.html_url}}
+    
+   
+   
+    <img class="mr-3 avatar" src="{{follower.avatar_url}}" alt="Generic placeholder image">
+    <div class="media-body">
+       {{follower.login}}
+       <a href="{{follower.html_url}}">{{follower.html_url}}</a>  
+    </div>
+    <div class="media-body">
+    
+
+    </div>
+  
   </li>
+
+
+
+
 </ul>
