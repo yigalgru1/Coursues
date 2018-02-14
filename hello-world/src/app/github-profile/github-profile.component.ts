@@ -13,7 +13,8 @@ export class GithubProfileComponent implements OnInit {
   ngOnInit() {
 
     this.service.paramMap.subscribe((params) => {
-      console.log(params);
+      let sss = + params.get('id');
+      console.log(sss);
     });
   }
 
