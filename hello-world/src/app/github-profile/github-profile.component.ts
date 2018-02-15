@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-github-profile',
   templateUrl: './github-profile.component.html',
@@ -14,7 +15,9 @@ export class GithubProfileComponent implements OnInit {
 
     this.service.paramMap.subscribe((params) => {
       let sss = + params.get('id');
+      let login = params.get('login');
       console.log(sss);
+      console.log(login);
     });
   }
 
