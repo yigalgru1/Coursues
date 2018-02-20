@@ -71,7 +71,7 @@ export class MapControllerComponent implements OnInit {
       fillColor: 'blue',  // Fill color
       fillOpacity: 0.6    // Fill opacity
     };
-   // var ellipse = L.ellipse([51.5, -0.09], [500, 100], 90).addTo(map);
+    var ellipse = L.ellipse([36.5, 36.5], [5000, 100], 45, circle_options).addTo(map);
 
     var circle_one = L.circle([35.89415, 37.03738], 500, circle_options).addTo(map);
 
