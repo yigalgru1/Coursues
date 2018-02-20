@@ -106,14 +106,15 @@ export class MapControllerComponent implements OnInit {
 
     var berlin = new L.LatLng(52.5, 13.35);
     var losangeles = new L.LatLng(33.82, -118.38);
-
-/*
-    var Geodesic = L.geodesic([], {
+  
+    var  Geodesic = L.geodesic([], { 
       weight: 7,
       opacity: 0.5,
       color: 'blue',
       steps: 50
     }).addTo(map);
+/*
+  
 
 
     Geodesic.setLatLngs([[berlin, losangeles]]);
