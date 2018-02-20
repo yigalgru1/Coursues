@@ -26,7 +26,7 @@
             "../node_modules/leaflet/dist/leaflet.js",
             "../node_modules/@mapbox/leaflet-omnivore/leaflet-omnivore.js",
             "../Leaflet.Ellipse/l.ellipse.min.js",
-            "../Leaflet.Ellipse/leaflet.geometryutil.js"
+            "../node_modules/leaflet-geometryutil/src/leaflet.geometryutil.js"
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {

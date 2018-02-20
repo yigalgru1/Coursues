@@ -78,10 +78,31 @@ export class MapControllerComponent implements OnInit {
     var polyline = L.polyline(line_points, polyline_options).addTo(map);
 
 
-    var aaa = L.GeometryUtil.length([[35.89415, 37.03738], [34.89415, 37.03738]]);
+
+    map.on('click', function (e) {
+      var _firstLatLng = e.latlng;
+      var _firstPoint = e.layerPoint;
+      console.log(_firstLatLng);
+      console.log(_firstPoint);
+    });
 
 
-     console.log(aaa);
+
+
+
+    var point1 = { lat: 33.37641235124679, lng: 36.46293756913659 };
+   
+    var destinationPoint = L.GeometryUtil.destination(point1, 66, 400000);
+
+    var latlngs1 = [
+      point1,
+      destinationPoint,
+    ];
+
+    //draw a simple line using a straight line by destance and angle parameters
+    var polyline = L.polyline(latlngs1, { color: 'red', width: 20 }).addTo(map);
+
+    console.log(destinationPoint);
 
   }
 
