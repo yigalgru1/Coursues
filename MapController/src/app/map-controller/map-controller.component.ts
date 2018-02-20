@@ -77,6 +77,12 @@ export class MapControllerComponent implements OnInit {
 
     var polyline = L.polyline(line_points, polyline_options).addTo(map);
 
+
+    var aaa = L.GeometryUtil.length([[35.89415, 37.03738], [34.89415, 37.03738]]);
+
+
+     console.log(aaa);
+
   }
 
 }
