@@ -113,11 +113,13 @@ export class MapControllerComponent implements OnInit {
       color: 'blue',
       steps: 50
     }).addTo(map);
+    Geodesic.setLatLngs([latlngs1]);
+    console.log(Geodesic);
 /*
   
 
 
-    Geodesic.setLatLngs([[berlin, losangeles]]);
+   
 */
 
   }
