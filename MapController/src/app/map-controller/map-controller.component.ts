@@ -91,7 +91,7 @@ export class MapControllerComponent implements OnInit {
 
 
     var point1 = { lat: 33.37641235124679, lng: 36.46293756913659 };
-   
+
     var destinationPoint = L.GeometryUtil.destination(point1, 66, 400000);
 
     var latlngs1 = [
@@ -103,6 +103,21 @@ export class MapControllerComponent implements OnInit {
     var polyline = L.polyline(latlngs1, { color: 'red', width: 20 }).addTo(map);
 
     console.log(destinationPoint);
+
+    var berlin = new L.LatLng(52.5, 13.35);
+    var losangeles = new L.LatLng(33.82, -118.38);
+
+/*
+    var Geodesic = L.geodesic([], {
+      weight: 7,
+      opacity: 0.5,
+      color: 'blue',
+      steps: 50
+    }).addTo(map);
+
+
+    Geodesic.setLatLngs([[berlin, losangeles]]);
+*/
 
   }
 
