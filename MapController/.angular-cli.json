@@ -24,7 +24,8 @@
         ],
         "scripts": [
             "../node_modules/leaflet/dist/leaflet.js",
-            "../node_modules/@mapbox/leaflet-omnivore/leaflet-omnivore.js"
+            "../node_modules/@mapbox/leaflet-omnivore/leaflet-omnivore.js",
+            "../Leaflet.Ellipse/l.ellipse.min.js"
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {
