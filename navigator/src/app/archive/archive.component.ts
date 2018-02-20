@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-archive',
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ArchiveComponent implements OnInit {
 
   header;
-  constructor(private rout: ActivatedRoute) { }
+  constructor(private rout: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
     this.rout.paramMap.subscribe((map) => {
@@ -17,6 +17,16 @@ export class ArchiveComponent implements OnInit {
       this.header ="Archive For " + map.get('year') + "/" + map.get('month');
     });
 
+
+
   }
+
+
+  submit() {
+    console.log('submit');
+    this.router.navigate(['/'], { queryParams: { page: 1, order: 'newst' } });
+
+  }
+
 
 }
