@@ -132,15 +132,17 @@ export class MapControllerComponent implements OnInit {
     });
 
 
-    var svgrect ="<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='enable-background:new 0 0 426.667 426.667;' xml:space='preserve' width='512px' height='512px'><g><path d='M416,298.667V256L245.333,149.333V32c0-17.707-14.293-32-32-32s-32,14.293-32,32v117.333L10.667,256v42.667    l170.667-53.333v117.333l-42.667,32v32l74.667-21.333L288,426.667v-32l-42.667-32V245.333L416,298.667z' fill='#933EC5'/></g></svg>"
+    // var svgrect ="<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'  width='512px' height='512px'><g><path d='M416,298.667V256L245.333,149.333V32c0-17.707-14.293-32-32-32s-32,14.293-32,32v117.333L10.667,256v42.667    l170.667-53.333v117.333l-42.667,32v32l74.667-21.333L288,426.667v-32l-42.667-32V245.333L416,298.667z' fill='#933EC5'/></g></svg>"
+    var svgrect = "<svg xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='20' height='10' fill='#5a7cd2'></rect><rect x='0' y='15' width='20' height='10' fill='#5d52cf'></rect></svg>";
 
 
-    var url = encodeURI("data:image/svg+xml," + svgrect).replace('#', '%23');
-    console.log(url);
 
-    var rectIcon = new CustomIcon({ iconUrl: url });
 
-    L.marker([52, -0.09], { icon: rectIcon }).bindPopup("I am data URI SVG icon.").addTo(map);
+    var circle_one = L.circle([32.89415, 32.03738], 500, circle_options).addTo(map);
+
+
+
+
   }
 
 }
