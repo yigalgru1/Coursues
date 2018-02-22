@@ -27,7 +27,8 @@
             "../node_modules/@mapbox/leaflet-omnivore/leaflet-omnivore.js",
             "../Leaflet.Ellipse/l.ellipse.min.js",
             "../node_modules/leaflet-geometryutil/src/leaflet.geometryutil.js",
-            "../Leaflet.Ellipse/Leaflet.Geodesic.js"
+            "../Leaflet.Ellipse/Leaflet.Geodesic.js",
+            "../icons/fontawesome-all.js"
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {
