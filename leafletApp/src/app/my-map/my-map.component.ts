@@ -32,9 +32,9 @@ export class MyMapComponent implements OnInit {
     mapboxgl.accessToken = 'pk.eyJ1IjoieWlnYWxncnUiLCJhIjoiY2piM2VlNmZ3MmtrNjJ3cWs1NXViaW1wdiJ9.QQYcKh8R86lBXINgnnW1uQ';
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10',
-      center: [-77.04, 38.907],
-      zoom: 11.15
+      style: 'mapbox://styles/mapbox/satellite-v9',
+      center: [35.34, 31.907],
+      zoom: 6
     });
 
     map.on('load', function () {
