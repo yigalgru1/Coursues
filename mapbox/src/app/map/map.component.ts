@@ -18,6 +18,10 @@ export class MapComponent implements OnInit {
 
     map.featureLayer.on('click', function(e) {
         map.panTo(e.layer.getLatLng());
+
+
+
+        
     });
   }
 
