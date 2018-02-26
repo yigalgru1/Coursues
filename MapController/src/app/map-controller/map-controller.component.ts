@@ -18,7 +18,7 @@ export class MapControllerComponent implements OnInit {
 
   constructor() { }
 
-  mark:any;
+  mark: any;
 
 
   ngOnInit() {
@@ -134,19 +134,35 @@ export class MapControllerComponent implements OnInit {
     var marker = L.marker(new L.LatLng(32.89415, 32.03738), {
       icon: L.divIcon({
         className: 'svg-marker',
-        html: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" transform="rotate(90)" viewBox="0 0 15 15"><path d="M15 6.818V8.5l-6.5-1-.318 4.773L11 14v1l-3.5-.682L4 15v-1l2.818-1.727L6.5 7.5 0 8.5V6.818L6.5 4.5v-3s0-1.5 1-1.5 1 1.5 1 1.5v2.818l6.5 2.5z"/></svg>',
+        html: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" transform="rotate(45)" transform-origin="50% 50%" viewBox="0 0 15 15"><path d="M15 6.818V8.5l-6.5-1-.318 4.773L11 14v1l-3.5-.682L4 15v-1l2.818-1.727L6.5 7.5 0 8.5V6.818L6.5 4.5v-3s0-1.5 1-1.5 1 1.5 1 1.5v2.818l6.5 2.5z"/></svg>',
         iconSize: [24, 24],
       }),
       draggable: false
     });
-
+    this.mark = marker;
     marker.addTo(map);
     var circle_one = L.circle([32.89415, 32.03738], 500, circle_options).addTo(map);
 
-
-
-
   }
+  counter: number = 90;
+
+  changeAngle() {
+    console.log("change angle");
+    console.log(this.mark.icon);
+    // this.rotate();
+    var ll = this.mark.getLatLng();
+    this.counter += 10;
+
+    this.mark.setIcon(L.divIcon({
+      className: "z11_icon",
+      html: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" transform="rotate(' + this.counter + ')" viewBox="0 0 15 15"><path d="M15 6.818V8.5l-6.5-1-.318 4.773L11 14v1l-3.5-.682L4 15v-1l2.818-1.727L6.5 7.5 0 8.5V6.818L6.5 4.5v-3s0-1.5 1-1.5 1 1.5 1 1.5v2.818l6.5 2.5z"/></svg>',
+      iconSize: [24, 24]
+    }));
+
+
+    console.log(ll);
+  }
+
 
 }
 

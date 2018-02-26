@@ -50,8 +50,8 @@ export class MapComponent implements OnInit {
     var marker = L.rotatedMarker(new L.LatLng(37.9, -77), {
       icon: L.divIcon({
         className: 'svg-marker',
-        html: '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path d="M15 6.818V8.5l-6.5-1-.318 4.773L11 14v1l-3.5-.682L4 15v-1l2.818-1.727L6.5 7.5 0 8.5V6.818L6.5 4.5v-3s0-1.5 1-1.5 1 1.5 1 1.5v2.818l6.5 2.5z"/></svg>',
-        iconSize: [80, 80],
+        html: '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"  viewBox="0 0 15 15"><path d="M15 6.818V8.5l-6.5-1-.318 4.773L11 14v1l-3.5-.682L4 15v-1l2.818-1.727L6.5 7.5 0 8.5V6.818L6.5 4.5v-3s0-1.5 1-1.5 1 1.5 1 1.5v2.818l6.5 2.5z"/></svg>',
+        iconSize: [15, 15],
       }),
       draggable: false
     });
@@ -209,7 +209,7 @@ export class MapComponent implements OnInit {
         L.Marker.prototype._setPos.call(this, pos);
         if (L.DomUtil.TRANSFORM) {
           // use the CSS transform rule if available
-          this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.angle + 'deg)';
+          this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.angle + 'deg)   ';
         } else if (L.Browser.ie) {
           // fallback for IE6, IE7, IE8
           var rad = this.options.angle * L.LatLng.DEG_TO_RAD,
