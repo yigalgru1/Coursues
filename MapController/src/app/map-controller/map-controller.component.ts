@@ -18,7 +18,7 @@ export class MapControllerComponent implements OnInit {
 
   constructor() { }
 
-
+  mark:any;
 
 
   ngOnInit() {
@@ -131,13 +131,16 @@ export class MapControllerComponent implements OnInit {
       }
     });
 
+    var marker = L.marker(new L.LatLng(32.89415, 32.03738), {
+      icon: L.divIcon({
+        className: 'svg-marker',
+        html: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" transform="rotate(90)" viewBox="0 0 15 15"><path d="M15 6.818V8.5l-6.5-1-.318 4.773L11 14v1l-3.5-.682L4 15v-1l2.818-1.727L6.5 7.5 0 8.5V6.818L6.5 4.5v-3s0-1.5 1-1.5 1 1.5 1 1.5v2.818l6.5 2.5z"/></svg>',
+        iconSize: [24, 24],
+      }),
+      draggable: false
+    });
 
-    // var svgrect ="<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'  width='512px' height='512px'><g><path d='M416,298.667V256L245.333,149.333V32c0-17.707-14.293-32-32-32s-32,14.293-32,32v117.333L10.667,256v42.667    l170.667-53.333v117.333l-42.667,32v32l74.667-21.333L288,426.667v-32l-42.667-32V245.333L416,298.667z' fill='#933EC5'/></g></svg>"
-    var svgrect = "<svg xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='20' height='10' fill='#5a7cd2'></rect><rect x='0' y='15' width='20' height='10' fill='#5d52cf'></rect></svg>";
-
-
-
-
+    marker.addTo(map);
     var circle_one = L.circle([32.89415, 32.03738], 500, circle_options).addTo(map);
 
 
