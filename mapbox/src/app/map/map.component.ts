@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as L from 'mapbox.js';
-
+//import * as L from 'mapbox.js';
+declare var L: any;
+declare var Leaflet: any;
 @Component({
   selector: 'map',
   templateUrl: './map.component.html',
@@ -10,42 +11,41 @@ import * as L from 'mapbox.js';
 
 export class MapComponent implements OnInit {
 
-
+  filters: any;
   mark: any;
+  layers: any;
+  overlays: any;
+
   constructor() { }
 
   ngOnInit() {
     L.mapbox.accessToken = 'pk.eyJ1IjoieWlnYWxncnUiLCJhIjoiY2piM2VlNmZ3MmtrNjJ3cWs1NXViaW1wdiJ9.QQYcKh8R86lBXINgnnW1uQ';
-    // MIT-licensed code by Benjamin Becquet
-    // https://github.com/bbecquet/Leaflet.PolylineDecorator
-    /*   L.RotatedMarker = L.Marker.extend({
-         options: { angle: 0 },
-         _setPos: function (pos) {
-           L.Marker.prototype._setPos.call(this, pos);
-           if (L.DomUtil.TRANSFORM) {
-             // use the CSS transform rule if available
-             this._icon.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.angle + 'deg)';
-           } else if (L.Browser.ie) {
-             // fallback for IE6, IE7, IE8
-             var rad = this.options.angle * L.LatLng.DEG_TO_RAD,
-               costheta = Math.cos(rad),
-               sintheta = Math.sin(rad);
-             this._icon.style.filter += ' progid:DXImageTransform.Microsoft.Matrix(sizingMethod=\'auto expand\', M11=' +
-               costheta + ', M12=' + (-sintheta) + ', M21=' + sintheta + ', M22=' + costheta + ')';
-           }
-           console.log(pos);
-         }
-       });
-       L.rotatedMarker = function (pos, options) {
-        // console.log(pos);
-         return new L.RotatedMarker(pos, options);
-       };
-   */
 
     this.rotate();
-    var map = L.mapbox.map('map', 'mapbox.emerald', {
-      keyboard: false
-    }).setView([37.9, -77], 4);
+    var map = L.mapbox.map('map')
+      .setView([38.9, -77], 13)
+      .addLayer(L.mapbox.tileLayer('mapbox.streets'));
+
+
+    this.filters = document.querySelectorAll("input[name='filters']");
+
+    this.overlays = L.layerGroup().addTo(map);
+    console.log("overlays");
+    console.log(this.overlays);
+
+
+
+
+    L.mapbox.featureLayer()
+
+      .loadURL('https://www.mapbox.com/mapbox.js/assets/data/stations.geojson')
+      .on('ready', e => {
+        this.layers = e.target;
+
+        this.showStations();
+      });
+
+
 
     var marker = L.rotatedMarker(new L.LatLng(37.9, -77), {
       icon: L.divIcon({
@@ -68,32 +68,6 @@ export class MapComponent implements OnInit {
 
 
     marker.addTo(map);
-
-
-
-    /*  window.setInterval(function () {
-      
-        var ll = marker.getLatLng();
-        ll.lat += Math.cos(direction) / 100;
-        ll.lng += Math.sin(direction) / 100;
-        marker.options.angle = direction * (180 / Math.PI);
-        marker.setLatLng(ll);
-        if (!manual && Math.random() > 0.95) {
-          direction += (Math.random() - 0.5) / 2;
-        }
-        console.log(11);
-      }, 10);
-  
-      // Add manual control of the airplane with left and right arrow keys, just because
-      document.body.addEventListener('keydown', function (e) {
-        if (e.which == 37) {
-          direction -= 0.1; manual = true;
-        }
-        if (e.which == 39) {
-          direction += 0.1; manual = true;
-        }
-      }, true);
-  */
 
 
     var geojson = {
@@ -226,6 +200,41 @@ export class MapComponent implements OnInit {
       // console.log(pos);
       return new L.RotatedMarker(pos, options);
     };
+
+
+
+
+
+  }
+  showStations() {
+    console.log("showStations");
+    console.log(this.filters);
+    // first collect all of the checked boxes and create an array of strings
+    // like ['green', 'blue']
+    var list = [];
+    for (var i = 0; i < this.filters.length; i++) {
+      if (this.filters[i].checked) list.push(this.filters[i].value);
+    }
+    // then remove any previously-displayed marker groups
+    this.overlays.clearLayers();
+
+    console.log(L);
+    console.log(Leaflet);
+
+
+
+
+ 
+    
+        // create a new marker group
+        var clusterGroup = new L.MarkerClusterGroup().addTo(this.overlays);
+        // and add any markers that fit the filtered criteria to that group.
+        this.layers.eachLayer(function (layer) {
+          if (list.indexOf(layer.feature.properties.line) !== -1) {
+            clusterGroup.addLayer(layer);
+          }
+         
+        }); 
   }
 
 
