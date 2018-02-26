@@ -1,4 +1,8 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
 #map { position:absolute; top:0; bottom:0; width:100%; }
+
+
 
 pre.ui-distance {
     position:absolute;
@@ -11,3 +15,15 @@ pre.ui-distance {
     line-height:18px;
     border-radius:3px;
     }
+
+    pre.button {
+        position:absolute;
+        bottom:40px;
+        left:10px;
+        padding:opx opx;
+        background:rgba(0,0,0,0.0);
+        color:#fff;
+        font-size:11px;
+        line-height:15px;
+        border-radius:0px;
+        }
